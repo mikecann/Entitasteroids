@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Entitas;
+using UnityEngine;
 
 namespace Assets.Entitasteroids.Sources.Features.Position
 {
@@ -12,8 +13,14 @@ namespace Assets.Entitasteroids.Sources.Features.Position
         {
             foreach (var entity in entities)
             {
+                var x = entity.position.x;
+                var y = entity.position.y;
                 var z = entity.view.gameObject.transform.position.z;
-                entity.view.gameObject.transform.position.Set(entity.position.x, entity.position.y, z);
+                var pos = entity.view.gameObject.transform.position;
+
+                if (x != pos.x || y != pos.y)
+                    entity.view.gameObject.transform.position = new Vector3(x, y, z);
+                    
             }
         }
 

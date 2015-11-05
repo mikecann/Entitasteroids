@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Assets.Entitasteroids.Scripts;
+using Assets.Entitasteroids.Scripts.Sources.Features.Asteroid;
 using Entitas;
 using UnityEngine;
 
@@ -13,16 +14,19 @@ public static class PoolExtensions
         return pool.CreateEntity()
             .IsPlayer(true)
             .AddPosition(0, 0)
-            .AddSpaceship(0.5f, 0.2f)
+            .AddSpaceship(0.5f, 0.02f)
             .IsControllable(controllable)
+            .IsWrappedAroundGameBounds(true)
             .AddForce(new List<Vector2>(), 0)
             .AddResource("Prefabs/Spaceship");
     }
 
-    public static Entity CreateGame(this Pool pool, bool playing)
+    public static Entity CreateGame(this Pool pool, bool playing, int level)
     {
         return pool.CreateEntity()
             .IsGame(true)
+            .AddBounds(new Bounds())
+            .AddLevel(level)
             .IsPlaying(playing);
     }
 
@@ -34,7 +38,8 @@ public static class PoolExtensions
             .AddRotation(rotation)
             .AddAge(0)
             .AddMaxAge(1f)
-            .AddForce(new List<Vector2> { new Vector2(0, 8) }, 0)
+            .IsWrappedAroundGameBounds(true)
+            .AddForce(new List<Vector2> { new Vector2(0, 10) }, 0)
             .AddResource("Prefabs/Bullet");
     }
 
@@ -52,5 +57,20 @@ public static class PoolExtensions
         return pool.CreateEntity()
             .AddTick(delta)
             .IsDestroying(true); 
+    }
+
+    public static Entity CreateCamera(this Pool pool, Camera camera)
+    {
+        return pool.CreateEntity()
+            .AddCamera(camera);
+    }
+
+    public static Entity CreateAsteroid(this Pool pool, float x, float y, AsteroidSize size)
+    {
+        return pool.CreateEntity()
+            .AddAsteroid(size)
+            .AddPosition(x, y)
+            .IsWrappedAroundGameBounds(true)
+            .AddResource("Prefabs/" + AsteroidData.Resources[size]);
     }
 }

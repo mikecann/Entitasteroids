@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Entitasteroids.Scripts.Sources.Bounds;
 using Assets.Entitasteroids.Scripts.Sources.Features.Gun;
+using Assets.Entitasteroids.Scripts.Sources.Features.Level;
+using Assets.Entitasteroids.Scripts.Sources.Features.Position;
 using Assets.Entitasteroids.Scripts.Sources.Features.Tick;
 using Assets.Entitasteroids.Scripts.Sources.Features.View;
 using Assets.Entitasteroids.Sources.Features.Age;
@@ -26,10 +29,12 @@ namespace Assets.Entitasteroids.Scripts.Controllers
     {
         private Systems _systems;
 
-        void Start()
+        void Awake()
         {
             _systems = CreateSystems(Pools.pool);
             _systems.Initialize();
+            
+            Pools.pool.CreateGame(true, 0);
         }
 
         void Update()
@@ -45,10 +50,10 @@ namespace Assets.Entitasteroids.Scripts.Controllers
         return new Systems()
 #endif
                 .Add(pool.CreateSystem<TickingSystem>())
-                .Add(pool.CreateSystem<GameStartSystem>())
+                .Add(pool.CreateSystem<PositionUpdatingSystem>())
                 .Add(pool.CreateSystem<RenderForceSystem>())
                 .Add(pool.CreateSystem<AddViewSystem>())
-                .Add(pool.CreateSystem<PlayerSpawningSystem>())
+                .Add(pool.CreateSystem<LevelStartingSystem>())
                 .Add(pool.CreateSystem<SpaceshipControlsSystem>())
                 .Add(pool.CreateSystem<AddRigidbodySystem>())
                 .Add(pool.CreateSystem<AgingSystem>())
@@ -56,7 +61,9 @@ namespace Assets.Entitasteroids.Scripts.Controllers
                 .Add(pool.CreateSystem<RenderRotationSystem>())
                 .Add(pool.CreateSystem<GunFiringSystem>())
                 .Add(pool.CreateSystem<GunCooldownSystem>())
+                .Add(pool.CreateSystem<GameBoundsUpdatingSystem>())
                 .Add(pool.CreateSystem<InputDestructionSystem>())
+                .Add(pool.CreateSystem<BoundsWrappingSystem>())
                 .Add(pool.CreateSystem<RenderPositionSystem>())
                 .Add(pool.CreateSystem<RemoveViewSystem>())
                 .Add(pool.CreateSystem<DestroyingSystem>());

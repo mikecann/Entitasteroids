@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Entitas;
 
-namespace Assets.Entitasteroids.Sources.Features.Asteroids
+namespace Assets.Entitasteroids.Scripts.Sources.Features.Asteroid
 {
     public enum AsteroidSize
     {
