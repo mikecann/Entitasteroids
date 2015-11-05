@@ -33,8 +33,22 @@ namespace Assets.Entitasteroids.Scripts.Controllers
         {
             _systems = CreateSystems(Pools.pool);
             _systems.Initialize();
+
+            CreateGame();
             
-            Pools.pool.CreateGame(true, 0);
+           
+        }
+
+        private void CreateGame()
+        {
+            var bounds = GetBounds();
+            Pools.pool.CreateGame(true, 0, bounds);
+        }
+
+        private Bounds GetBounds()
+        {
+            var size = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+            return new Bounds(Vector3.zero, new Vector3(size.x * 2, size.y * 2));
         }
 
         void Update()
@@ -61,7 +75,6 @@ namespace Assets.Entitasteroids.Scripts.Controllers
                 .Add(pool.CreateSystem<RenderRotationSystem>())
                 .Add(pool.CreateSystem<GunFiringSystem>())
                 .Add(pool.CreateSystem<GunCooldownSystem>())
-                .Add(pool.CreateSystem<GameBoundsUpdatingSystem>())
                 .Add(pool.CreateSystem<InputDestructionSystem>())
                 .Add(pool.CreateSystem<BoundsWrappingSystem>())
                 .Add(pool.CreateSystem<RenderPositionSystem>())

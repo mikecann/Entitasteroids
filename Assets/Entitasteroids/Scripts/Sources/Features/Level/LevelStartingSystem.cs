@@ -12,6 +12,7 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Level
     {
         private Pool _pool;
         private Group _games;
+        private Group _collideables;
 
         public void Execute(List<Entity> entities)
         {
@@ -25,9 +26,7 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Level
 
         private void StartLevel(int level, Entity game)
         {
-            _pool.CreatePlayer(true)
-                .FindEmptyPosition(1, game.bounds.bounds);
-
+            _pool.CreatePlayer(true);
             for (var i = 0; i < level+1; i++)
                 CreateAsteroid(game);
         }
@@ -36,7 +35,7 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Level
         {
             var size = Asteroid.AsteroidSize.Large;
             _pool.CreateAsteroid(0, 0, size)
-                .FindEmptyPosition(AsteroidData.Radii[size], game.bounds.bounds);
+                .FindEmptyPosition(AsteroidData.Radii[size], game.bounds.bounds, _collideables.GetEntities());
         }
 
         public TriggerOnEvent trigger
@@ -48,6 +47,7 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Level
         {
             _pool = pool;
             _games = pool.GetGroup(Matcher.Game);
+            _collideables = pool.GetGroup(Matcher.AllOf(Matcher.CollisionRadius, Matcher.Position));
         }
     }
 }

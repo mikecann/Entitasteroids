@@ -15,17 +15,18 @@ public static class PoolExtensions
             .IsPlayer(true)
             .AddPosition(0, 0)
             .AddSpaceship(0.5f, 0.02f)
+            .AddCollisionRadius(1)
             .IsControllable(controllable)
             .IsWrappedAroundGameBounds(true)
             .AddForce(new List<Vector2>(), 0)
             .AddResource("Prefabs/Spaceship");
     }
 
-    public static Entity CreateGame(this Pool pool, bool playing, int level)
+    public static Entity CreateGame(this Pool pool, bool playing, int level, Bounds bounds)
     {
         return pool.CreateEntity()
             .IsGame(true)
-            .AddBounds(new Bounds())
+            .AddBounds(bounds)
             .AddLevel(level)
             .IsPlaying(playing);
     }
@@ -70,6 +71,7 @@ public static class PoolExtensions
         return pool.CreateEntity()
             .AddAsteroid(size)
             .AddPosition(x, y)
+            .AddCollisionRadius(AsteroidData.Radii[size])
             .IsWrappedAroundGameBounds(true)
             .AddResource("Prefabs/" + AsteroidData.Resources[size]);
     }
