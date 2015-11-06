@@ -71,8 +71,17 @@ public static class PoolExtensions
         return pool.CreateEntity()
             .AddAsteroid(size)
             .AddPosition(x, y)
+            .AddHitpoints(1)
             .AddCollisionRadius(AsteroidData.Radii[size])
             .IsWrappedAroundGameBounds(true)
             .AddResource("Prefabs/" + AsteroidData.Resources[size]);
+    }
+
+    public static Entity CreateCollision(this Pool pool, Collision2D collision)
+    {
+        return pool.CreateEntity()
+            .AddCollision(collision)
+            .IsDestroying(true);
+
     }
 }

@@ -34,7 +34,9 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Level
         private void CreateAsteroid(Entity game)
         {
             var size = Asteroid.AsteroidSize.Large;
+            var force = UnityEngine.Random.insideUnitCircle.normalized;
             _pool.CreateAsteroid(0, 0, size)
+                .ReplaceForce(new List<Vector2> { force }, force.x)
                 .FindEmptyPosition(AsteroidData.Radii[size], game.bounds.bounds, _collideables.GetEntities());
         }
 

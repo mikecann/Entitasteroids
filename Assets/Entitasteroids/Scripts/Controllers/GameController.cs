@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Assets.Entitasteroids.Scripts.Sources.Bounds;
+using Assets.Entitasteroids.Scripts.Sources.Features.Asteroid;
+using Assets.Entitasteroids.Scripts.Sources.Features.Bullets;
 using Assets.Entitasteroids.Scripts.Sources.Features.Gun;
 using Assets.Entitasteroids.Scripts.Sources.Features.Level;
 using Assets.Entitasteroids.Scripts.Sources.Features.Position;
@@ -66,12 +68,14 @@ namespace Assets.Entitasteroids.Scripts.Controllers
                 .Add(pool.CreateSystem<TickingSystem>())
                 .Add(pool.CreateSystem<PositionUpdatingSystem>())
                 .Add(pool.CreateSystem<RenderForceSystem>())
+                .Add(pool.CreateSystem<BulletCollisionSystem>())
                 .Add(pool.CreateSystem<AddViewSystem>())
                 .Add(pool.CreateSystem<LevelStartingSystem>())
                 .Add(pool.CreateSystem<SpaceshipControlsSystem>())
                 .Add(pool.CreateSystem<AddRigidbodySystem>())
                 .Add(pool.CreateSystem<AgingSystem>())
                 .Add(pool.CreateSystem<MaxAgeSystem>())
+                .Add(pool.CreateSystem<AsteroidSplittingSystem>())
                 .Add(pool.CreateSystem<RenderRotationSystem>())
                 .Add(pool.CreateSystem<GunFiringSystem>())
                 .Add(pool.CreateSystem<GunCooldownSystem>())

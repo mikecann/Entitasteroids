@@ -8,8 +8,9 @@ namespace Assets.Entitasteroids.Scripts.Controllers
 {
     public class CollisionsController : MonoBehaviour
     {
-        public Rigidbody2D rigidBody;
-
-
+        void OnCollisionEnter2D(Collision2D coll)
+        {
+            Pools.pool.CreateCollision(coll);
+        }
     }
 }

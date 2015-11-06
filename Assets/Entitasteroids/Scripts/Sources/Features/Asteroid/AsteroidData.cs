@@ -17,10 +17,22 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Asteroid
 
         public static Dictionary<AsteroidSize, float> Radii = new Dictionary<AsteroidSize, float>
         {
-            {AsteroidSize.Large, 1},
-            {AsteroidSize.Medium, 0.5f},
-            {AsteroidSize.Small, 0.3f},
-            {AsteroidSize.Tiny, 0.1f}
+            {AsteroidSize.Large, 2f},
+            {AsteroidSize.Medium, 1.5f},
+            {AsteroidSize.Small, 1f},
+            {AsteroidSize.Tiny, 0.5f}
         };
+
+        public static AsteroidSize GetNextSizeDown(AsteroidSize size)
+        {
+            if (size == AsteroidSize.Large)
+                return AsteroidSize.Medium;
+            if (size == AsteroidSize.Medium)
+                return AsteroidSize.Small;
+            if (size == AsteroidSize.Small)
+                return AsteroidSize.Tiny;
+
+            throw new Exception("Nothing smaller!");
+        }
     }
 }
