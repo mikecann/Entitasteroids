@@ -8,6 +8,7 @@ using Assets.Entitasteroids.Scripts.Sources.Features.Bullets;
 using Assets.Entitasteroids.Scripts.Sources.Features.Gun;
 using Assets.Entitasteroids.Scripts.Sources.Features.Level;
 using Assets.Entitasteroids.Scripts.Sources.Features.Position;
+using Assets.Entitasteroids.Scripts.Sources.Features.Spaceship;
 using Assets.Entitasteroids.Scripts.Sources.Features.Tick;
 using Assets.Entitasteroids.Scripts.Sources.Features.View;
 using Assets.Entitasteroids.Sources.Features.Age;
@@ -79,6 +80,9 @@ namespace Assets.Entitasteroids.Scripts.Controllers
                 .Add(pool.CreateSystem<RenderRotationSystem>())
                 .Add(pool.CreateSystem<GunFiringSystem>())
                 .Add(pool.CreateSystem<GunCooldownSystem>())
+                .Add(pool.CreateSystem<LevelEndingSystem>())
+                .Add(pool.CreateSystem<SpaceshipRespawningSystem>())
+                .Add(pool.CreateSystem<SpaceshipCollisionSystem>())
                 .Add(pool.CreateSystem<InputDestructionSystem>())
                 .Add(pool.CreateSystem<BoundsWrappingSystem>())
                 .Add(pool.CreateSystem<RenderPositionSystem>())

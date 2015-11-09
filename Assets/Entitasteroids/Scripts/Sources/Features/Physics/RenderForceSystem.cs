@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Entitasteroids.Sources.Features.Physics
 {
-    public class RenderForceSystem : IReactiveSystem
+    public class RenderForceSystem : IReactiveSystem, IEnsureComponents
     {
         public void Execute(List<Entity> entities)
         {
@@ -35,6 +35,11 @@ namespace Assets.Entitasteroids.Sources.Features.Physics
         public TriggerOnEvent trigger
         {
             get { return Matcher.AllOf(Matcher.Force, Matcher.Rigidbody).OnEntityAdded(); }
+        }
+
+        public IMatcher ensureComponents
+        {
+            get { return Matcher.AllOf(Matcher.Force, Matcher.Rigidbody); }
         }
     }
 }

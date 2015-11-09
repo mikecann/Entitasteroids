@@ -10,6 +10,7 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Asteroid
     public class AsteroidSplittingSystem : IReactiveSystem, ISetPool
     {
         private Pool _pool;
+        private Group _scores;
 
         public void Execute(List<Entity> entities)
         {
@@ -21,6 +22,9 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Asteroid
         private void Split(Entity entity)
         {
             entity.isDestroying = true;
+            ScorePoints(10);
+
+            _pool.CreateAsteroidDebrisEffect(entity.position.x, entity.position.y);
 
             if (entity.asteroid.size == AsteroidSize.Tiny)
                 return;
@@ -31,6 +35,12 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Asteroid
 
             CreateAsteroid(entity, newSize, randomAngle * newCollisionRadius);
             CreateAsteroid(entity, newSize, randomAngle * newCollisionRadius * -1);
+        }
+
+        private void ScorePoints(int number)
+        {
+            var score = _scores.GetSingleEntity();
+            score.ReplaceScore(score.score.score + number);
         }
 
         private void CreateAsteroid(Entity oldAsteroid, AsteroidSize size, Vector2 vec)
@@ -56,6 +66,7 @@ namespace Assets.Entitasteroids.Scripts.Sources.Features.Asteroid
         public void SetPool(Pool pool)
         {
             _pool = pool;
+            _scores = pool.GetGroup(Matcher.Score);
         }
     }
 }

@@ -28,6 +28,8 @@ public static class PoolExtensions
             .IsGame(true)
             .AddBounds(bounds)
             .AddLevel(level)
+            .AddLives(3)
+            .AddScore(0)
             .IsPlaying(playing);
     }
 
@@ -82,6 +84,26 @@ public static class PoolExtensions
         return pool.CreateEntity()
             .AddCollision(collision)
             .IsDestroying(true);
+
+    }
+
+    public static Entity CreateAsteroidDebrisEffect(this Pool pool, float x, float y)
+    {
+        return pool.CreateEntity()
+            .AddResource("Prefabs/Asteroid Debris Effect")
+            .AddAge(0)
+            .AddPosition(x, y)
+            .AddMaxAge(3);
+
+    }
+
+    public static Entity CreateSpaceshipExplosionEffect(this Pool pool, float x, float y)
+    {
+        return pool.CreateEntity()
+            .AddResource("Prefabs/Spaceship Explosion Effect")
+            .AddAge(0)
+            .AddPosition(x, y)
+            .AddMaxAge(3);
 
     }
 }

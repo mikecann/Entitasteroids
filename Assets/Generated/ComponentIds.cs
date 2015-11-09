@@ -6,28 +6,32 @@ public static class ComponentIds {
     public const int Hitpoints = 4;
     public const int Fireable = 5;
     public const int Level = 6;
-    public const int Collision = 7;
-    public const int CollisionRadius = 8;
-    public const int Tick = 9;
-    public const int View = 10;
-    public const int Age = 11;
-    public const int MaxAge = 12;
-    public const int Bullet = 13;
-    public const int Destroying = 14;
-    public const int Game = 15;
-    public const int Playing = 16;
-    public const int Gun = 17;
-    public const int Controllable = 18;
-    public const int Input = 19;
-    public const int Force = 20;
-    public const int Rigidbody = 21;
-    public const int Player = 22;
-    public const int Position = 23;
-    public const int Resource = 24;
-    public const int Rotation = 25;
-    public const int Spaceship = 26;
+    public const int Lives = 7;
+    public const int Collision = 8;
+    public const int CollisionRadius = 9;
+    public const int Score = 10;
+    public const int SpaceshipDeathroes = 11;
+    public const int WaitingForSpace = 12;
+    public const int Tick = 13;
+    public const int View = 14;
+    public const int Age = 15;
+    public const int MaxAge = 16;
+    public const int Bullet = 17;
+    public const int Destroying = 18;
+    public const int Game = 19;
+    public const int Playing = 20;
+    public const int Gun = 21;
+    public const int Controllable = 22;
+    public const int Input = 23;
+    public const int Force = 24;
+    public const int Rigidbody = 25;
+    public const int Player = 26;
+    public const int Position = 27;
+    public const int Resource = 28;
+    public const int Rotation = 29;
+    public const int Spaceship = 30;
 
-    public const int TotalComponents = 27;
+    public const int TotalComponents = 31;
 
     public static readonly string[] componentNames = {
         "Bounds",
@@ -37,8 +41,12 @@ public static class ComponentIds {
         "Hitpoints",
         "Fireable",
         "Level",
+        "Lives",
         "Collision",
         "CollisionRadius",
+        "Score",
+        "SpaceshipDeathroes",
+        "WaitingForSpace",
         "Tick",
         "View",
         "Age",
@@ -67,8 +75,12 @@ public static class ComponentIds {
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.Damage.HitpointsComponent),
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.Gun.FireableComponent),
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.Level.LevelComponent),
+        typeof(Assets.Entitasteroids.Scripts.Sources.Features.Lives.LivesComponent),
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.Physics.CollisionComponent),
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.Physics.CollisionRadiusComponent),
+        typeof(Assets.Entitasteroids.Scripts.Sources.Features.Score.ScoreComponent),
+        typeof(Assets.Entitasteroids.Scripts.Sources.Features.Spaceship.SpaceshipDeathroesComponent),
+        typeof(Assets.Entitasteroids.Scripts.Sources.Features.Spaceship.WaitingForSpaceComponent),
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.Tick.TickComponent),
         typeof(Assets.Entitasteroids.Scripts.Sources.Features.View.ViewComponent),
         typeof(Assets.Entitasteroids.Sources.Features.Age.AgeComponent),
